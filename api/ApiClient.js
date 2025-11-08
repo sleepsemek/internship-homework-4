@@ -1,8 +1,5 @@
-import {AbstractHttpClient} from "./interface/AbstractHttpClient";
-
-export class ApiClient extends AbstractHttpClient {
+export class ApiClient {
     constructor(httpClientImplementation) {
-        super()
         this._client = httpClientImplementation
     }
 

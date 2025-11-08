@@ -1,6 +1,6 @@
-import {AbstractHttpClient} from "../interface/AbstractHttpClient";
+import {AbstractHttpAdapter} from "./AbstractHttpAdapter.js";
 
-class XHRHttpAdapter extends AbstractHttpClient {
+export class XHRHttpAdapter extends AbstractHttpAdapter {
     constructor() {
         super()
     }
@@ -8,6 +8,9 @@ class XHRHttpAdapter extends AbstractHttpClient {
     async _makeRequest(url, config) {
         return new Promise((resolve, reject) => {
             const httpRequest = new XMLHttpRequest()
+
+            httpRequest.responseType = config.headers?.["Content-Type"]?.includes('application/json') ? 'json' : ''
+
             httpRequest.open(config.method, url, true)
 
             if (config.headers) {
@@ -17,11 +20,13 @@ class XHRHttpAdapter extends AbstractHttpClient {
             }
 
             httpRequest.onload = () => {
-                const responseBody = httpRequest.responseText
-                resolve(httpRequest.getResponseHeader('Content-Type')?.includes('application/json')
-                    ? JSON.parse(responseBody)
-                    : responseBody
-                )
+                const requestStatus = httpRequest.status
+                if (requestStatus < 200 || requestStatus > 299) {
+                    reject(requestStatus)
+                    return
+                }
+
+                resolve(httpRequest.response)
             }
 
             httpRequest.onerror = () => {

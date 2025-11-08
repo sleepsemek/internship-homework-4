@@ -1,0 +1,27 @@
+:root {
+    --color-surface: #222222;
+    --color-on-surface: #FFFFFF;
+}
+
+body {
+    background-color: var(--color-surface);
+    color: var(--color-on-surface);
+    font-family: sans-serif;
+}
+
+form {
+    width: min(100%, 500px);
+}
+
+form, ul {
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 10px;
+}
+
+li {
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 6px;
+    justify-items: start;
+}
