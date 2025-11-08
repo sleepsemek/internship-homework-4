@@ -7,16 +7,19 @@ body {
     background-color: var(--color-surface);
     color: var(--color-on-surface);
     font-family: sans-serif;
+    box-sizing: border-box;
 }
 
-form {
+main {
     width: min(100%, 500px);
+    margin: auto;
 }
 
 form, ul {
     display: grid;
     grid-template-columns: 1fr;
     row-gap: 10px;
+    padding: 0;
 }
 
 li {
@@ -24,4 +27,15 @@ li {
     grid-template-columns: 1fr;
     row-gap: 6px;
     justify-items: start;
+    border: 1px dashed var(--color-on-surface);
+    border-radius: 2px;
+    padding: 10px;
+}
+
+button, input {
+    padding: 6px 12px;
+}
+
+label {
+    text-wrap: nowrap;
 }

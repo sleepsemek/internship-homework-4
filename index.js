@@ -7,7 +7,7 @@ const BASE_URL = 'https://tasks-service-maks1394.amvera.io'
 const fetchAdapter = new FetchHttpAdapter()
 const xhrHttpAdapter = new XHRHttpAdapter()
 
-const apiClient = new ApiClient(xhrHttpAdapter)
+const apiClient = new ApiClient(fetchAdapter)
 
 const selectors = {
     tasksList: '[data-tasks-list]',
