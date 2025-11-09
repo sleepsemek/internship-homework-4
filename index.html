@@ -16,16 +16,16 @@
             <h2 id="create-task-header">Создать задачу</h2>
             <form data-create-task-form class="create-task-form">
                 <label class="create-task-form__label label">
-                    <input type="text" name="name" class="create-task__form-input input" required>
                     Название задачи
+                    <input type="text" name="name" class="create-task__form-input input" required>
                 </label>
 
                 <label class="create-task-form__label label">
-                    <textarea name="info" class="create-task-form__input input" required></textarea>
                     Описание задачи
+                    <textarea name="info" class="create-task-form__input input" required></textarea>
                 </label>
 
-                <label class="create-task-form__label label">
+                <label class="create-task-form__label label label--inline">
                     <input type="checkbox" name="isImportant" value=true class="create-task-form__input input">
                     Важная?
                 </label>
@@ -36,15 +36,15 @@
         <section aria-labelledby="task-list-header" class="section">
             <h2 id="task-list-header">Список задач</h2>
             <div class="filters">
-                <label class="filters__label">
+                <label class="filters__label label label--inline">
                     <input type="text" placeholder="Название задачи" class="filters__input input" data-filter-name>
                     По названию
                 </label>
-                <label class="filters__label">
+                <label class="filters__label label label--inline">
                     <input type="checkbox" class="filters__input input" data-filter-important>
                     Только важные
                 </label>
-                <label class="filters__label">
+                <label class="filters__label label label--inline">
                     <input type="checkbox" class="filters__input input" data-filter-completed>
                     Только выполненные
                 </label>
