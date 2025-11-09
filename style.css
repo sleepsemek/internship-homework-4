@@ -17,7 +17,7 @@
 :focus-visible {
     outline: 2px dashed var(--color-primary);
     outline-offset: 2px;
-    transition-duration: 0s !important;
+    transition-duration: 0s;
 }
 
 h1, h2, h3, h4, h5, h6, p {
