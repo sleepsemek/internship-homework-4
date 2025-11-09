@@ -1,3 +1,6 @@
+/*
+Фасад для доступа к бэку, конкретный адаптер передается через агрегацию
+*/
 export class ApiClient {
     constructor(httpClientImplementation) {
         this._client = httpClientImplementation

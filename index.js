@@ -1,5 +1,5 @@
-import {FetchHttpAdapter, XHRHttpAdapter} from './api/adapters'
-import {ApiClient} from './api/ApiClient.js'
+import {FetchHttpAdapter, XHRHttpAdapter} from './api/adapters';
+import {ApiClient} from './api/ApiClient.js';
 import {createTaskItem} from "./ui/taskItem.js";
 
 const BASE_URL = 'https://tasks-service-maks1394.amvera.io'
@@ -183,6 +183,10 @@ function fetchTasks() {
         renderTasks(results)
     })
 }
+
+/*
+Функция рендера перерисовывает только изменившиеся записи
+*/
 
 function renderTasks(newTasks) {
     const oldTasksMap = new Map(state.tasks.map(t => [t.id, t]))

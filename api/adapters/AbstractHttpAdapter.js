@@ -1,3 +1,7 @@
+/*
+Абстрактный класс адаптера, от которого будут наследоваться два других. Конкретной реализации не имеет, но инкапсулирует часть общей логики псевдоприватными методами
+*/
+
 export class AbstractHttpAdapter {
     constructor() {
         if (new.target === AbstractHttpAdapter) throw new Error('Cant make an instance of an abstract class')

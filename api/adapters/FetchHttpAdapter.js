@@ -1,5 +1,9 @@
 import {AbstractHttpAdapter} from "./AbstractHttpAdapter.js";
 
+/*
+Конкретная реализация адаптера с использованием Fetch API
+*/
+
 export class FetchHttpAdapter extends AbstractHttpAdapter {
     constructor() {
         super()

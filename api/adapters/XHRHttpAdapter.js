@@ -1,5 +1,9 @@
 import {AbstractHttpAdapter} from "./AbstractHttpAdapter.js";
 
+/*
+Конкретная реализация адаптера с использованием XmlHttpRequest
+*/
+
 export class XHRHttpAdapter extends AbstractHttpAdapter {
     constructor() {
         super()
