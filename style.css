@@ -1,41 +1,43 @@
 :root {
-    --color-surface: #222222;
-    --color-on-surface: #FFFFFF;
+    --color-surface: #ffffff;
+    --color-on-surface: #222222;
+
+    --color-primary: #0288D1;
+    --color-on-primary: #ffffff;
+
+    --color-surface-1: #f5f5f5;
+    --color-surface-2: #eeeeee;
+    --color-surface-3: #e0e0e0;
+    --color-surface-4: #bdbdbd;
+}
+
+h1, h2,
+h3, h4,
+h5, h6 {
+    margin: 0;
 }
 
 body {
+    margin: 0;
     background-color: var(--color-surface);
     color: var(--color-on-surface);
     font-family: sans-serif;
+    font-size: 16px;
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-main {
-    width: min(100%, 500px);
-    margin: auto;
-}
-
-form, ul {
+.content {
     display: grid;
     grid-template-columns: 1fr;
-    row-gap: 10px;
-    padding: 0;
+    row-gap: 16px;
+    padding: 20px;
 }
 
-li {
-    display: grid;
-    grid-template-columns: 1fr;
-    row-gap: 6px;
-    justify-items: start;
-    border: 1px dashed var(--color-on-surface);
-    border-radius: 2px;
-    padding: 10px;
-}
-
-button, input {
-    padding: 6px 12px;
-}
-
-label {
-    text-wrap: nowrap;
+.section {
+    background-color: var(--color-surface-1);
+    border-radius: 10px;
+    padding: 16px;
 }

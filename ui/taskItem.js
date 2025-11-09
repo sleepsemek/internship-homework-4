@@ -7,25 +7,27 @@ export function createTaskItem(
         isCompleted
     }
 ) {
-    const li = document.createElement('li')
+    const li = Object.assign(document.createElement('li'), {
+        className: 'tasks__item task'
+    })
 
     li.dataset.taskId = id
     li.innerHTML = `
-        <div>
-            <label for="${id}">${name}</label>
-            <p>${info}</p>
+        <header class="task__header">
+            <h3 class="task__title">${name}</h3>
+            <p class="task__description">${info}</p>
+        </header>
+        <div class="task__controls">
+            <label class="task__controls-label label">
+                <input class="task__controls-input input" type="checkbox" ${isImportant ? 'checked' : ''} data-important-checkbox>
+                Важная
+            </label>
+            <label class="task__controls-label label">
+                <input class="task__controls-input input" type="checkbox" ${isCompleted ? 'checked' : ''} data-complete-checkbox>
+                Выполнена
+            </label>
         </div>
-        <div>
-            <div>
-                <input type="checkbox" id="important_${id}" ${isImportant ? 'checked' : ''} data-important-checkbox>
-                <label for="important_${id}">Важная</label>
-            </div>
-            <div>
-                <input type="checkbox" id="complete_${id}" ${isCompleted ? 'checked' : ''} data-complete-checkbox>
-                <label for="complete_${id}">Выполнена</label>
-            </div>
-        </div>
-        <button type="button" data-delete-button>Удалить</button>
+        <button class="task__controls-button button button--delete" type="button" data-delete-button>Удалить</button>
     `
     return li
 }

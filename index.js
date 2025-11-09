@@ -66,7 +66,8 @@ function bindEvents() {
     importantCheckbox.addEventListener('change', handleImportantCheckboxChange)
     completedCheckbox.addEventListener('change', handleCompletedCheckboxChange)
     createTaskForm.addEventListener('submit', handleFormSubmit)
-    tasksListElement.addEventListener('click', handleTaskClick)
+    tasksListElement.addEventListener('click', handleTaskEvents)
+    tasksListElement.addEventListener('change', handleTaskEvents)
 }
 
 function handleNameInput(event) {
@@ -105,11 +106,8 @@ async function handleFormSubmit(event) {
     }
 }
 
-async function handleTaskClick(event) {
-    event.preventDefault()
-
+async function handleTaskEvents(event) {
     const taskItem = event.target.closest(selectors.taskItem.id)
-
     const id = taskItem?.dataset.taskId
 
     if (!id) return
@@ -123,28 +121,30 @@ async function handleTaskClick(event) {
         return
     }
 
-    const importantCheckbox = event.target.closest(selectors.taskItem.importantCheckbox)
-    if (importantCheckbox) {
-        try {
-            await updateTask(id, {
-                isImportant: importantCheckbox.checked
-            })
-        } catch (e) {
-            console.log('Error updating task:', e)
+    const checkboxMap = [
+        {
+            selector: selectors.taskItem.importantCheckbox,
+            field: 'isImportant',
+        },
+        {
+            selector: selectors.taskItem.completeCheckbox,
+            field: 'isCompleted',
         }
-        return
+    ]
+
+    const matchedCheckbox = checkboxMap.find(checkbox => event.target.matches(checkbox.selector))
+    if (!matchedCheckbox) return
+
+    event.preventDefault()
+
+    try {
+        await updateTask(id, {
+            [matchedCheckbox.field]: event.target.checked
+        })
+    } catch (e) {
+        console.log('Error updating task:', e)
     }
 
-    const completeCheckbox = event.target.closest(selectors.taskItem.completeCheckbox)
-    if (completeCheckbox) {
-        try {
-            await updateTask(id, {
-                isCompleted: completeCheckbox.checked
-            })
-        } catch (e) {
-            console.log('Error updating task:', e)
-        }
-    }
 }
 
 async function createNewTask(data) {
@@ -212,10 +212,7 @@ function renderTasks(newTasks) {
             oldTask.isImportant !== task.isImportant
         ) {
             const taskElement = tasksListElement.querySelector(`[data-task-id="${task.id}"]`)
-            if (taskElement) {
-                const newTaskElement = createTaskItem(task)
-                tasksListElement.replaceChild(newTaskElement, taskElement)
-            }
+            if (taskElement) tasksListElement.replaceChild(createTaskItem(task), taskElement)
         }
     })
 
