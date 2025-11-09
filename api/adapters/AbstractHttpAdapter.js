@@ -1,5 +1,7 @@
 /*
-Абстрактный класс адаптера, от которого будут наследоваться два других. Конкретной реализации не имеет, но инкапсулирует часть общей логики псевдоприватными методами
+    Абстрактный класс адаптера, от которого будут наследоваться два других
+    Конкретной реализации не имеет, но инкапсулирует часть общей логики псевдоприватными методами
+    Логирование тут
 */
 
 export class AbstractHttpAdapter {
@@ -8,19 +10,19 @@ export class AbstractHttpAdapter {
     }
 
     async get(url, config) {
-        return this._makeRequest(url, this._prepareConfig(url, config, 'GET'))
+        return this._logRequest('GET', url, undefined, config)
     }
 
     async post(url, body, config = {}) {
-        return this._makeRequest(url, this._prepareConfig(url, config, 'POST', body))
+        return this._logRequest('POST', url, body, config)
     }
 
     async delete(url, config = {}) {
-        return this._makeRequest(url, this._prepareConfig(url, config, 'DELETE'))
+        return this._logRequest('DELETE', url, undefined, config)
     }
 
     async patch(url, body, config = {}) {
-        return this._makeRequest(url, this._prepareConfig(url, config, 'PATCH', body))
+        return this._logRequest('PATCH', url, body, config)
     }
 
     _prepareConfig(url, config, method, body) {
@@ -44,6 +46,14 @@ export class AbstractHttpAdapter {
             return JSON.stringify(body)
         }
         return body
+    }
+
+    async _logRequest(method, url, body, config) {
+        const preparedConfig = this._prepareConfig(url, config, method, body)
+        console.log('ЗАПРОС:', url, preparedConfig)
+        const result = await this._makeRequest(url, preparedConfig)
+        console.log('ОТВЕТ:', url, result)
+        return result
     }
 
     _makeRequest(url, config) {
