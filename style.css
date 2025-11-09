@@ -1,15 +1,12 @@
 :root {
-    --color-surface: #ffffff;
-    --color-on-surface: #222222;
-
+    --color-surface: #fff;
+    --color-on-surface: #222;
     --color-primary: #7c0066;
     --color-primary-variant: #600051;
-    --color-on-primary: #ffffff;
-
+    --color-on-primary: #fff;
     --color-surface-1: #f8f8f8;
-    --color-surface-2: #eeeeee;
+    --color-surface-2: #eee;
     --color-surface-3: #e8e8e8;
-
     --box-shadow: 0 4px 8px #00000030;
     --transition-duration: 0.2s;
 }
@@ -142,7 +139,7 @@ textarea {
     padding: 0;
     margin: 0;
 
-    @media (max-width: 768px) {
+    @media (width <= 768px) {
         grid-template-columns: 1fr;
     }
 }
