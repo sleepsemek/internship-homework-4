@@ -13,7 +13,7 @@ export function createTaskItem(
 
     li.dataset.taskId = id
     li.innerHTML = `
-        <h3 class="task__title">${name}</h3>
+        <h3 class="task__title">#${id} ${name}</h3>
         <p class="task__description">${info}</p>
         
         <div class="task__controls">
