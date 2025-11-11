@@ -39,8 +39,7 @@ export class TasksController {
         this.importantCheckbox.addEventListener('change', event => this.handleImportantCheckboxChange(event))
         this.completedCheckbox.addEventListener('change', event => this.handleCompletedCheckboxChange(event))
         this.createTaskForm.addEventListener('submit', event => this.handleFormSubmit(event))
-        this.tasksListElement.addEventListener('click', event => this.handleTaskEvents(event))
-        this.tasksListElement.addEventListener('change', event => this.handleTaskEvents(event))
+        this.tasksListElement.addEventListener('click', event => this.handleTaskClick(event))
 
         this.tasksModel.on('tasksUpdated', (tasks) => this.renderTasks(tasks))
     }
@@ -81,7 +80,7 @@ export class TasksController {
         }
     }
 
-    async handleTaskEvents(event) {
+    async handleTaskClick(event) {
         const taskItem = event.target.closest(this.selectors.taskItem.id)
         const id = taskItem?.dataset.taskId
 
@@ -119,7 +118,6 @@ export class TasksController {
         } catch (e) {
             console.log('Error updating task:', e)
         }
-
     }
 
     renderTasks(tasks) {
